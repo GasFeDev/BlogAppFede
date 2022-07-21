@@ -1,0 +1,70 @@
+Cómo implementar aplicaciones gratis
+
+Implementación de aplicaciones de reacción única y aplicaciones web de pila completa utilizando Heroku y Netlify.
+
+
+Aplicación Single React en Heroku
+	1 - Crea una cuenta Heroku.
+	2 - Crea tu aplicación.
+	3 - Descargue la CLI de Heroku desde aquí .
+	4 - Ejecute estos códigos.
+heroku login
+git init
+heroku git:remote -a <app-name>
+heroku create -b https://github.com/mars/create-react-app-buildpack.git
+git add .
+git commit -am "my first commit"
+git push heroku master
+
+
+Aplicación Single React en Netlify
+
+Implementar usando el navegador
+	1 - Cree su aplicación
+yarn build
+	2 - Arrastre y suelte su carpeta de compilación en la sección de carga manual de Netlify.
+
+Implementar usando Github
+	1 - Conectarse a Github
+	2 - Elige tu repositorio/sucursal
+	3 - Cambie el código de implementación a
+CI= npm run build
+
+
+Implementación de aplicaciones de pila completa
+	1 - Crea una aplicación de Heroku.
+	2 - Cambie el puerto de su aplicación Node a
+process.env.PORT || <any port number>
+	3 - Mueva su aplicación front-end dentro de la aplicación Node.
+	4 - Agregue estos códigos dentro de su archivo JS principal en su aplicación Node.
+app.use(express.static(path.join(__dirname, "/<front end app folder name>/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/<front end app folder name>/build', 'index.html'));
+});
+	5 - Agregue este script a su paquete.json en la aplicación Node.
+"heroku-postbuild": "cd client && npm install && npm run build"
+	6 - Cambie la URL de su API en su aplicación React.
+	7 - Configura tus variables de entorno en Heroku
+	8 - Ejecute estos códigos.
+
+heroku login
+git init
+heroku git:remote -a <app-name>
+git add .
+git commit -am "my first commit"
+git push heroku master
+
+"EN CASO DE ERROR: Heroku build failing due to Yarn and npm lockfile conflict"
+	If you use npm:
+
+		git rm yarn.lock
+		git commit -m "Remove yarn lock file"
+		git push heroku master
+
+	If you use yarn:
+
+		git rm package-lock.json
+		git commit -m "Remove npm lock file"
+		git push heroku master 
+
