@@ -17,13 +17,16 @@ export default function Sidebar() {
     <div className="sidebar">
       <div className="sidebarItem">
         <span className="sidebarTitle">ABOUT ME</span>
-        <img
-          src="https://i.pinimg.com/236x/1e/3f/58/1e3f587572a7a7b20bbf1828595a1786--holiday-party-themes-holiday-gift-guide.jpg"
-          alt=""
-        />
+        <img src="https://mendoza.travel/wp-content/uploads/159.jpg" alt="" />
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate qui
-          necessitatibus nostrum illum reprehenderit.
+          Malargüe es una ciudad de Mendoza, ubicada a los pies de la cordillera
+          de los Andes. Al suroeste está la Caverna de las Brujas, una reserva
+          natural con un amplio complejo cavernoso. El humedal con abundantes
+          especies de aves de la laguna Llancanelo se encuentra al este. Al sur
+          está el área volcánica de la Reserva Provincial La Payunia. El centro
+          de esquí Las Leñas está al noroeste. En la ciudad, una espectacular
+          pirámide azul alberga la sala de proyección del Planetario de
+          Malargüe.
         </p>
       </div>
       <div className="sidebarItem">
