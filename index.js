@@ -46,7 +46,10 @@ app.use("/api/categories", categoryRoute);
 app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build", "/index.html"));
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+});
+app.post("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
 });
 
 app.listen(process.env.PORT || 5000, () => {
