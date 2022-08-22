@@ -13,7 +13,7 @@ export default function Register() {
     e.preventDefault();
     setError(false);
     try {
-      const res = await axiosInstance.post("/auth/register + /index.html", {
+      const res = await axiosInstance.post("/auth/register", {
         username,
         email,
         password,
