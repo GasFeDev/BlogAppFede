@@ -50,7 +50,7 @@ app.get('*', (req, res) => {
 
 heroku login
 git init
-heroku git:remote -a <app-name>
+heroku git:remote -a <app-name> o git remote add heroku https://git.heroku.com/<app-name>.git
 git add .
 git commit -am "my first commit"
 git push heroku master
