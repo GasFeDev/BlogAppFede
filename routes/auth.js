@@ -21,7 +21,7 @@ router.post("/register", async (req, res) => {
 });
 
 //LOGIN
-router.post("/login", async (req, res) => {
+/* router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
     !user && res.status(400).json("Wrong credentials!");
@@ -31,6 +31,34 @@ router.post("/login", async (req, res) => {
 
     const { password, ...others } = user._doc;
     res.status(200).json(others);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}); */
+
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.body.username });
+
+    if (!user) {
+      return res.status(401).json("Wrong password or username!");
+    }
+
+    const validated = await bcrypt.compare(req.body.password, user.password);
+
+    if (!validated) {
+      rres.status(400).json("Wrong credentials!");
+    }
+
+    const accessToken = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.SECRET_KEY,
+      { expiresIn: "5d" }
+    );
+
+    const { password, ...info } = user._doc;
+
+    res.status(200).json({ ...info, accessToken });
   } catch (err) {
     res.status(500).json(err);
   }
