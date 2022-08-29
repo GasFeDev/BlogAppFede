@@ -47,18 +47,11 @@ router.post("/login", async (req, res) => {
     const validated = await bcrypt.compare(req.body.password, user.password);
 
     if (!validated) {
-      rres.status(400).json("Wrong credentials!");
+      return res.status(400).json("Wrong credentials!");
     }
 
-    const accessToken = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
-      process.env.SECRET_KEY,
-      { expiresIn: "5d" }
-    );
-
-    const { password, ...info } = user._doc;
-
-    res.status(200).json({ ...info, accessToken });
+    const { password, ...others } = user._doc;
+    res.status(200).json(others);
   } catch (err) {
     res.status(500).json(err);
   }
